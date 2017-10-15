@@ -1,5 +1,5 @@
-var express = require('express');
-var router = express.Router();
+var router = require('express').Router(),
+	User = require('mongoose').model('User');
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
