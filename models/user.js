@@ -9,6 +9,7 @@ This represents a chess palyer
 var User = new Schema({
 	email : {type:String,required:true, unique: true},
 	password: String,
+  name : {type : String, required : true, unique : true},
 	emp_id: {type:String,required:true,unique:true},
 	photo : String,
   currentRating: {type:Number,default:800},
