@@ -14,4 +14,12 @@ router.get('/user', function(req, res, next) {
   res.render('user');
 });
 
+router.get('/userprofile:id',function(req,res,next){
+  res.render('userprofile')
+})
+
+router.get('/matches:id',function(req,res,next){
+  res.render('mathces')
+})
+
 module.exports = router;
