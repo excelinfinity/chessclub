@@ -7,7 +7,7 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/tournament', function(req, res, next) {
-  res.render('tournament', { title: 'Express' });
+  res.render('tournament');
 });
 
 module.exports = router;
