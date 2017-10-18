@@ -10,4 +10,8 @@ router.get('/tournament', function(req, res, next) {
   res.render('tournament');
 });
 
+router.get('/user', function(req, res, next) {
+  res.render('user');
+});
+
 module.exports = router;
