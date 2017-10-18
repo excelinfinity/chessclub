@@ -135,7 +135,7 @@ html
           // Main row
           .row
             // Left col
-            section.col-lg-9.connectedSortable
+            section.col-lg-8.connectedSortable
               .box
                 .box-header
                   h3.box-title LeaderBoard
@@ -224,23 +224,62 @@ html
                         td 1250
                       
 
-            section.col-lg-3.connectedSortable
-              // Calendar
-              .box.box-solid.bg-green-gradient
-                .box-header
-                  i.fa.fa-calendar
-                  h3.box-title Calendars
-                  // /. tools
+            section.col-lg-4.connectedSortable
+              //- // Calendar
+              //- .box.box-solid.bg-green-gradient
+              //-   .box-header
+              //-     i.fa.fa-calendar
+              //-     h3.box-title Calendars
+              //-     // /. tools
+              //-   // /.box-header
+              //-   .box-body.no-padding
+              //-     // The calendar
+              //-     #calendar(style='width: 100%')
+              //upcoming events      
+              .box.box-primary
+                .box-header.with-border
+                  h3.box-title Upcoming tournament
                 // /.box-header
-                .box-body.no-padding
-                  // The calendar
-                  #calendar(style='width: 100%')
-                // /.box-body
-              // /.box
-            // right col
-          // /.row (main row)
-        // /.content
-      // /.content-wrapper
+                .box-body
+                  ul.products-list.product-list-in-box
+                    li.item
+                      .product-img
+                        img(src='img/default-50x50.gif', alt='Product Image')
+                      .product-info
+                        a.product-title(href='javascript:void(0)')
+                          | Oct_Blitz_1
+                          span.label.label-warning.pull-right 16-oct-2017
+                        span.product-description
+                          | Blitz tournament at 7 pm alska
+                    li.item
+                      .product-img
+                        img(src='img/default-50x50.gif', alt='Product Image')
+                      .product-info
+                        a.product-title(href='javascript:void(0)')
+                          | Oct_Blitz_1
+                          span.label.label-warning.pull-right 16-oct-2017
+                        span.product-description
+                          | Blitz tournament at 7 pm alska
+                    li.item
+                      .product-img
+                        img(src='img/default-50x50.gif', alt='Product Image')
+                      .product-info
+                        a.product-title(href='javascript:void(0)')
+                          | Oct_Blitz_1
+                          span.label.label-warning.pull-right 16-oct-2017
+                        span.product-description
+                          | Blitz tournament at 7 pm alska
+                    li.item
+                      .product-img
+                        img(src='img/default-50x50.gif', alt='Product Image')
+                      .product-info
+                        a.product-title(href='javascript:void(0)')
+                          | Oct_Blitz_1
+                          span.label.label-warning.pull-right 16-oct-2017
+                        span.product-description
+                          | Blitz tournament at 7 pm alska
+                  
+
         
     // ./wrapper
     // jQuery 3
