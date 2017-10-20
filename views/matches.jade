@@ -78,66 +78,56 @@ html
         // Content Header (Page header)
         section.content-header
           h1
-            | HOME
-            small page
+            | Tournaments
+            small Matches
         // Main content
         section.content
           // Main row
           .row
             // Left col
-            section.col-lg-12.connectedSortable
-              .box
-                .box-header
-                  h3.box-title Members
-                // /.box-header
-                .box-body
-                  table#example2.table.table-bordered.table-hover
-                    thead
-                      tr
-                        th Name
-                        th Total Tournament
-                        th Total Match
-                        th WIN
-                        th Lose
-                        th Draw
-                        th ELO
-                    tbody
-                      tr
-                        td name of member
-                          img.img-circle(src="img/user1-128x128.jpg" height="32px" width="32px")
-                        td 4
-                        td 12
-                        td 4
-                        td 6
-                        td 2
-                        td 800
-                      tr
-                        td name of member
-                          img.img-circle(src="img/user1-128x128.jpg" height="32px" width="32px")
-                        td 4
-                        td 12
-                        td 4
-                        td 6
-                        td 2
-                        td 800
-                      tr
-                        td name of member
-                          img.img-circle(src="img/user1-128x128.jpg" height="32px" width="32px")
-                        td 4
-                        td 12
-                        td 4
-                        td 6
-                        td 2
-                        td 800
-                      tr
-                        td name of member
-                          img.img-circle(src="img/user1-128x128.jpg" height="32px" width="32px")
-                        td 4
-                        td 12
-                        td 4
-                        td 6
-                        td 2
-                        td 800
+            section.col-md-3
+              // Profile Image
+              .box.box-primary
+                .box-body.box-profile
+                  h3.profile-username.text-center Oct_Blitz_1
+                  p.text-muted.text-center date goes here
+                  ul.list-group.list-group-unbordered
+                    li.list-group-item
+                      b Total Matches
+                      a.pull-right 8
+                    li.list-group-item
+                      b participents
+                      a.pull-right 3
+                    
+                // /.box-body
+              // /.box
+            .col-lg-9
+                .box
+                  .box-header
+                    h3.box-title Match history
+                  // /.box-header
+                  .box-body
+                    table#example2.table.table-bordered.table-hover
+                      thead
+                        tr
+                          th Player1
+                          th Player2
+                          th Result
+                          th ELO Before
+                          th ELO of opponent
+                          th ELO after
+                          th ELO Opponent after 
+                      tbody
+                        tr
+                          td Oct_Blitz_1
+                          td someone
+                          td Black
+                          td Won
+                          td 1200
+                          td 1300
+                          td 1276
+                        
+              
                       
     // ./wrapper
     // jQuery 3

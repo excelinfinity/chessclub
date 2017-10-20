@@ -18,8 +18,12 @@ router.get('/userprofile',function(req,res,next){
   res.render('userprofile')
 })
 
-router.get('/matches:id',function(req,res,next){
-  res.render('mathces')
+router.get('/matches',function(req,res,next){
+  res.render('matches')
+})
+
+router.get('/play',function(req,res,next){
+  res.render('play')
 })
 
 module.exports = router;
