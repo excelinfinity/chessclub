@@ -1,6 +1,11 @@
-var express = require('express');
-var router = express.Router();
+var bcrypt = require('bcrypt'),
+  mongoose = require('mongoose'),
+  express = require('express'),
+  router = express.Router(),
+	User = mongoose.model('User'),
+  Userauth = mongoose.model('Userauth');
 
+const saltRounds = 10;
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
@@ -33,7 +38,8 @@ router.get('/register',function(req,res,next){
     nameerr:'',
     emailerr:'',
     passworderr:'',
-    passterr:''
+    passterr:'',
+    already:''
   };
   res.render('register',userobj)
 })
@@ -41,6 +47,7 @@ router.get('/register',function(req,res,next){
 router.post('/register',function(req,res,next){
   var userobj = {};
   var a = false;
+  userobj.already='';
   userobj.name = req.body.name;
   userobj.email = req.body.email;
   userobj.password = req.body.password;
@@ -65,9 +72,34 @@ router.post('/register',function(req,res,next){
     console.log(userobj);
     res.render('register',userobj);
   }else{
-    
-    //create session
-    //redirect to new page.
+    var auth = new Userauth();
+    auth.email = userobj.email;
+    auth.name = userobj.name;
+    //use bule bird later
+    Userauth.find({email:auth.email},function(err,docs){
+      if(docs != null){
+        userobj.already = 'email address already registed';
+        console.log('email alreay register');
+        res.render('register',userobj);
+      }else{
+        bcrypt.hash(userobj.password, saltRounds, function(err, hash) {
+          if(err){
+            console.log("err during password hash");
+            res.render('error',{err});
+          }
+          console.log('hash='+hash)
+          auth.password = hash;
+          auth.save(function(err){
+            if(err) {
+              console.log("error during save data")
+              res.render('error');
+            }
+            res.render('index');
+          });
+        });
+      }
+    })
+
   }
 
 })

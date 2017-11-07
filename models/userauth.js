@@ -8,8 +8,8 @@ This represents a chess palyer
 */
 var Userauth = new Schema({
 	email : {type:String,required:true, unique: true},
-	password: {type:String,required:true, unique: true},
-	secret : {type:String,required:true}
+	password: {type:String,required:true},
+  name:{type:String,required:true}
 });
 
 module.exports = mongoose.model('Userauth',Userauth);

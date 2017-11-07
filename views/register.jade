@@ -34,7 +34,7 @@ html
           .form-group.has-feedback
             input.form-control(type='text' name="name" value=name placeholder='Full name')
             span.glyphicon.glyphicon-user.form-control-feedback
-          span(style="color:red") #{emailerr}
+          span(style="color:red") #{emailerr} #{already}
           .form-group.has-feedback
             input.form-control(type='email' name="email" value=email placeholder='xyz@worksap.co.jp')
             span.glyphicon.glyphicon-envelope.form-control-feedback
@@ -53,7 +53,7 @@ html
             .col-xs-4
               button.btn.btn-primary.btn-block.btn-flat(type='submit') Register
             // /.col
-        a.text-center(href='login') I already have a membership
+        a.text-center(href='login') I already have a account
       // /.form-box
     // /.register-box
     // jQuery 3
