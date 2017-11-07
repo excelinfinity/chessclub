@@ -69,15 +69,18 @@ router.post('/register',function(req,res,next){
     a = true;
   }
   if(a){
-    console.log(userobj);
     res.render('register',userobj);
   }else{
     var auth = new Userauth();
+    var user = new User();
     auth.email = userobj.email;
+    user.email = userobj.email;
     auth.name = userobj.name;
+    user.name = userobj.name;
     //use bule bird later
-    Userauth.find({email:auth.email},function(err,docs){
-      if(docs != null){
+    Userauth.find({email : auth.email},function(err,docs){
+      console.log(docs);
+      if(docs.length!=0){
         userobj.already = 'email address already registed';
         console.log('email alreay register');
         res.render('register',userobj);
@@ -86,16 +89,13 @@ router.post('/register',function(req,res,next){
           if(err){
             console.log("err during password hash");
             res.render('error',{err});
+            next();
           }
-          console.log('hash='+hash)
           auth.password = hash;
-          auth.save(function(err){
-            if(err) {
-              console.log("error during save data")
-              res.render('error');
-            }
-            res.render('index');
-          });
+          auth.save();
+          user.save();
+          req.session.user = user;
+          res.redirect('/');
         });
       }
     })
