@@ -31,6 +31,9 @@ router.get('/play',function(req,res,next){
   res.render('play')
 })
 
+router.get('/login',function(req,res,next){
+  res.render('login')
+})
 router.get('/register',function(req,res,next){
   var userobj = {
     name :'',
@@ -94,7 +97,6 @@ router.post('/register',function(req,res,next){
           auth.password = hash;
           auth.save();
           user.save();
-          req.session.user = user;
           res.redirect('/');
         });
       }
