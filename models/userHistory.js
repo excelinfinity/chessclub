@@ -3,7 +3,9 @@ var mongoose = require('mongoose'),
 
 var History = new Schema({
 	tourId : {type : String, required:true},
+	tourName : {type : String, required:true},
 	matchId : {type : String, required:true},
+	meemail : String,
 	me : String,
 	mycolor : String, //black & white
 	opponent :String,

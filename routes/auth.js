@@ -101,6 +101,7 @@ router.post('/login',function(req,res,next){
   userobj.pass = req.body.pass;
   userobj.error = '';
   Userauth.find({email:userobj.email},function(err,docs){
+    console.log(docs);
     if(docs.length!=0){
      var hashpass = docs[0].password;
      bcrypt.compare(userobj.pass, hashpass, function(err, istrue) {

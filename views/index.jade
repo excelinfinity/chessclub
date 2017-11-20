@@ -39,7 +39,7 @@ html
     .wrapper
       header.main-header
         // Logo
-        a.logo(href='index2.html')
+        a.logo(href='/')
           // mini logo for sidebar mini 50x50 pixels
           span.logo-mini
             b W
@@ -53,12 +53,11 @@ html
           // Sidebar toggle button
           a.sidebar-toggle(href='#', data-toggle='push-menu', role='button')
             span.sr-only Toggle navigation
-          //here goes dirty code
           .navbar-custom-menu
             ul.nav.navbar-nav
-              // Messages: style can be found in dropdown.less
-              li.dropdown.user.user-menu.open
-                a.dropdown-toggle(href='#', data-toggle='dropdown', aria-expanded='true')
+              // User Account: style can be found in dropdown.less
+              li.dropdown.user.user-menu
+                a.dropdown-toggle(href='#', data-toggle='dropdown', aria-expanded='false')
                   img.user-image(src='img/avatar.png', alt='User Image')
                   span.hidden-xs #{name}
                 ul.dropdown-menu
@@ -67,11 +66,39 @@ html
                     img.img-circle(src='img/avatar.png', alt='User Image')
                     p
                       | #{email}
+                  // Menu Body
+                  li.user-body
+                    // /.row
+                  // Menu Footer
                   li.user-footer
                     .pull-left
-                      a.btn.btn-default.btn-flat(href='/profile') Profile
+                      a.btn.btn-default.btn-flat(href='userprofile') Profile
                     .pull-right
-                      a.btn.btn-default.btn-flat(href='/logout') Sign out
+                      a.btn.btn-default.btn-flat(href='logout') Sign out
+
+        //- nav.navbar.navbar-static-top
+        //-   // Sidebar toggle button
+        //-   a.sidebar-toggle(href='#', data-toggle='push-menu', role='button')
+        //-     span.sr-only Toggle navigation
+        //-   //here goes dirty code
+        //-   .navbar-custom-menu
+        //-     ul.nav.navbar-nav
+        //-       // Messages: style can be found in dropdown.less
+        //-       li.dropdown.user.user-menu.open
+        //-         a.dropdown-toggle(href='#', data-toggle='dropdown', aria-expanded='true')
+        //-           img.user-image(src='img/avatar.png', alt='User Image')
+        //-           span.hidden-xs #{name}
+        //-         ul.dropdown-menu
+        //-           // User image
+        //-           li.user-header
+        //-             img.img-circle(src='img/avatar.png', alt='User Image')
+        //-             p
+        //-               | #{email}
+        //-           li.user-footer
+        //-             .pull-left
+        //-               a.btn.btn-default.btn-flat(href='/profile') Profile
+        //-             .pull-right
+        //-               a.btn.btn-default.btn-flat(href='/logout') Sign out
 
 
       // Left side column. contains the logo and sidebar

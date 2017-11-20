@@ -44,6 +44,29 @@ html
           // Sidebar toggle button
           a.sidebar-toggle(href='#', data-toggle='push-menu', role='button')
             span.sr-only Toggle navigation
+          .navbar-custom-menu
+            ul.nav.navbar-nav
+              // User Account: style can be found in dropdown.less
+              li.dropdown.user.user-menu
+                a.dropdown-toggle(href='#', data-toggle='dropdown', aria-expanded='false')
+                  img.user-image(src='img/avatar.png', alt='User Image')
+                  span.hidden-xs #{user.name}
+                ul.dropdown-menu
+                  // User image
+                  li.user-header
+                    img.img-circle(src='img/avatar.png', alt='User Image')
+                    p
+                      | #{user.email}
+                  // Menu Body
+                  li.user-body
+                    // /.row
+                  // Menu Footer
+                  li.user-footer
+                    .pull-left
+                      a.btn.btn-default.btn-flat(href='userprofile') Profile
+                    .pull-right
+                      a.btn.btn-default.btn-flat(href='logout') Sign out
+
                 
             
       // Left side column. contains the logo and sidebar
@@ -89,22 +112,22 @@ html
               // Profile Image
               .box.box-primary
                 .box-body.box-profile
-                  img.profile-user-img.img-responsive.img-circle(src='img/user4-128x128.jpg', alt='User profile picture')
-                  h3.profile-username.text-center Nina Mcintire
-                  p.text-muted.text-center Software Engineer
+                  img.profile-user-img.img-responsive.img-circle(src='img/avatar.png', alt='User profile picture')
+                  h3.profile-username.text-center #{user.name}
+                  p.text-muted.text-center Beginner
                   ul.list-group.list-group-unbordered
                     li.list-group-item
                       b ELO Rating
-                      a.pull-right 1322
+                      a.pull-right #{user.currentRating}
                     li.list-group-item
                       b Total Match
-                      a.pull-right 54
+                      a.pull-right #{user.totalMatch}
                     li.list-group-item
                       b Win
-                      a.pull-right 31
+                      a.pull-right #{user.win}
                     li.list-group-item
                       b Draw
-                      a.pull-right 11
+                      a.pull-right #{user.draw}
                   
                 // /.box-body
               // /.box
@@ -125,17 +148,16 @@ html
                           th ELO of opponent
                           th ELO after
                       tbody
-                        tr
-                          td Oct_Blitz_1
-                          td someone
-                          td Black
-                          td Won
-                          td 1200
-                          td 1300
-                          td 1276
-                        
-              
-                      
+                        each row in history
+                          tr
+                            td row.tourName
+                            td row.opponent
+                            td row.mycolor
+                            td row.result
+                            td row.mer
+                            td row.or
+                            td row.merA
+                                      
     // ./wrapper
     // jQuery 3
     script(src='bower_components/jquery/dist/jquery.min.js')
