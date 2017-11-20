@@ -7,7 +7,6 @@ var bodyParser = require('body-parser');
 var db = require("./db");
 
 var index = require('./routes/index');
-var users = require('./routes/users');
 var auth  = require('./routes/auth');
 var jwt = require('jsonwebtoken');
 var app = express();
@@ -25,7 +24,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/bower_components',  express.static(__dirname + '/bower_components'));
 
-function isLogin(req,res,next){
+function checkLogin(req,res,next){
   var cookie = req.cookies;
   if(cookie && cookie.token){
     jwt.verify(cookie.token, 'someReallySecret', function(err, decoded) {
@@ -35,9 +34,24 @@ function isLogin(req,res,next){
   }
   next();
 }
-app.use('/auth',isLogin,auth)
-app.use('/', index);
-app.use('/users', users);
+
+function isLogin(req,res,next){
+  var cookie = req.cookies;
+  if(cookie && cookie.token){
+    jwt.verify(cookie.token, 'someReallySecret', function(err, decoded) {
+        if(err){res.redirect('auth/login')}
+         req.locals = {};
+         req.locals.name = decoded.name;
+         req.locals.email = decoded.email;
+        next();
+    });
+  }else{
+    res.redirect('auth/login');
+  }
+}
+
+app.use('/auth',checkLogin,auth)
+app.use('/',isLogin,index);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

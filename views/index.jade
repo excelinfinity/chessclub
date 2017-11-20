@@ -3,7 +3,7 @@ html
   head
     meta(charset='utf-8')
     meta(http-equiv='X-UA-Compatible', content='IE=edge')
-    title  ChessClub Worksap 
+    title  ChessClub Worksap
     // Tell the browser to be responsive to screen width
     meta(content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no', name='viewport')
     // Bootstrap 3.3.7
@@ -53,8 +53,27 @@ html
           // Sidebar toggle button
           a.sidebar-toggle(href='#', data-toggle='push-menu', role='button')
             span.sr-only Toggle navigation
-                
-            
+          //here goes dirty code
+          .navbar-custom-menu
+            ul.nav.navbar-nav
+              // Messages: style can be found in dropdown.less
+              li.dropdown.user.user-menu.open
+                a.dropdown-toggle(href='#', data-toggle='dropdown', aria-expanded='true')
+                  img.user-image(src='img/avatar.png', alt='User Image')
+                  span.hidden-xs #{name}
+                ul.dropdown-menu
+                  // User image
+                  li.user-header
+                    img.img-circle(src='img/avatar.png', alt='User Image')
+                    p
+                      | #{email}
+                  li.user-footer
+                    .pull-left
+                      a.btn.btn-default.btn-flat(href='/profile') Profile
+                    .pull-right
+                      a.btn.btn-default.btn-flat(href='/logout') Sign out
+
+
       // Left side column. contains the logo and sidebar
       aside.main-sidebar
         // sidebar: style can be found in sidebar.less
@@ -102,7 +121,7 @@ html
                 .icon
                   i.ion.ion-ios-game-controller-b
                 a.small-box-footer(href='/tournament')
-                  | More info 
+                  | More info
                   i.fa.fa-arrow-circle-right
             // ./col
             .col-lg-4.col-xs-6
@@ -115,7 +134,7 @@ html
                 .icon
                   i.ion.ion-trophy
                 a.small-box-footer(href='/tournament')
-                  | More info 
+                  | More info
                   i.fa.fa-arrow-circle-right
             // ./col
             .col-lg-4.col-xs-6
@@ -127,7 +146,7 @@ html
                 .icon
                   i.ion.ion-person-add
                 a.small-box-footer(href='/users')
-                  | More info 
+                  | More info
                   i.fa.fa-arrow-circle-right
             // ./col
             // ./col
@@ -151,78 +170,78 @@ html
                         th ELO Rating
                     tbody
                       tr
-                        td 1           
+                        td 1
                           img.img-circle(src="img/user1-128x128.jpg" height="32px" width="32px")
-                        td    
+                        td
                           | abcd
                           | abcd
                         td 6
                         td 4
                         td 1250
                       tr
-                        td 1           
+                        td 1
                           img.img-circle(src="img/user1-128x128.jpg" height="32px" width="32px")
-                        td    
+                        td
                           | abcd
                           | abcd
                         td 6
                         td 4
                         td 1250
                       tr
-                        td 1           
+                        td 1
                           img.img-circle(src="img/user1-128x128.jpg" height="32px" width="32px")
-                        td    
+                        td
                           | abcd
                           | abcd
                         td 6
                         td 4
                         td 1250
                       tr
-                        td 1           
+                        td 1
                           img.img-circle(src="img/user1-128x128.jpg" height="32px" width="32px")
-                        td    
+                        td
                           | abcd
                           | abcd
                         td 6
                         td 4
                         td 1250
                       tr
-                        td 1           
+                        td 1
                           img.img-circle(src="img/user1-128x128.jpg" height="32px" width="32px")
-                        td    
+                        td
                           | abcd
                           | abcd
                         td 6
                         td 4
                         td 1250
                       tr
-                        td 1           
+                        td 1
                           img.img-circle(src="img/user1-128x128.jpg" height="32px" width="32px")
-                        td    
+                        td
                           | abcd
                           | abcd
                         td 6
                         td 4
                         td 1250
                       tr
-                        td 1           
+                        td 1
                           img.img-circle(src="img/user1-128x128.jpg" height="32px" width="32px")
-                        td    
+                        td
                           | abcd
                           | abcd
                         td 6
                         td 4
                         td 1250
                       tr
-                        td 1           
+                        td 1
                           img.img-circle(src="img/user1-128x128.jpg" height="32px" width="32px")
-                        td    
+                        td
                           | abcd
                           | abcd
                         td 6
                         td 4
                         td 1250
-                      
+
 
             section.col-lg-4.connectedSortable
               //- // Calendar
@@ -235,7 +254,7 @@ html
               //-   .box-body.no-padding
               //-     // The calendar
               //-     #calendar(style='width: 100%')
-              //upcoming events      
+              //upcoming events
               .box.box-primary
                 .box-header.with-border
                   h3.box-title Upcoming tournament
@@ -278,9 +297,9 @@ html
                           span.label.label-warning.pull-right 16-oct-2017
                         span.product-description
                           | Blitz tournament at 7 pm alska
-                  
 
-        
+
+
     // ./wrapper
     // jQuery 3
     script(src='bower_components/jquery/dist/jquery.min.js')
@@ -304,7 +323,7 @@ html
     script(src='bower_components/bootstrap-daterangepicker/daterangepicker.js')
     // datepicker
     script(src='bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js')
-    
+
     // DataTables
     script(src="bower_components/datatables.net/js/jquery.dataTables.min.js")
     script(src="bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js")
@@ -318,7 +337,7 @@ html
     script(src='js/pages/dashboard.js')
     // AdminLTE for demo purposes
     script(src='js/demo.js')
-    
+
     script.
       $(function () {
       $('#example2').DataTable({
