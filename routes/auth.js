@@ -8,33 +8,7 @@ var bcrypt = require('bcrypt'),
 
 const saltRounds = 10;
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
-})
 
-router.get('/tournament', function(req, res, next) {
-  res.render('tournament');
-})
-
-router.get('/user', function(req, res, next) {
-  res.render('user');
-})
-
-router.get('/userprofile',function(req,res,next){
-  res.render('userprofile')
-})
-
-router.get('/matches',function(req,res,next){
-  res.render('matches')
-})
-
-router.get('/play',function(req,res,next){
-  res.render('play')
-})
-
-router.get('/login',function(req,res,next){
-  res.render('login')
-})
 router.get('/register',function(req,res,next){
   var userobj = {
     name :'',
@@ -102,14 +76,54 @@ router.post('/register',function(req,res,next){
               email: auth.email,
               name: auth.name,
               type: '0'
-          }, 'someReallySecret', { expiresIn: 1000*60*60 });
-          res.cookie('token',token, { maxAge: 1000*60*60, httpOnly: true })
+          }, 'someReallySecret', { expiresIn: '30d' });
+          res.cookie('token',token, { maxAge: 7000*60*60, httpOnly: true })
           res.redirect('/');
         });
       }
     })
-
   }
+});
 
-})
+
+router.get('/login',function(req,res,next){
+  userobj ={};
+  userobj.email = '';
+  userobj.pass = '';
+  userobj.error = '';
+  res.render('login');
+});
+
+
+router.post('/login',function(req,res,next){
+  userobj ={};
+  userobj.email = req.body.email;
+  userobj.pass = req.body.pass;
+  userobj.error = '';
+  Userauth.find({email:userobj.email},function(err,docs){
+    if(docs.length!=0){
+     var hashpass = docs[0].password;
+     bcrypt.compare(userobj.pass, hashpass, function(err, istrue) {
+       if(istrue){
+         var token =jwt.sign({
+             email: userobj.email,
+             name: docs[0].name,
+             type: '0'
+         }, 'someReallySecret', { expiresIn: '30d' });
+         res.cookie('token',token, { maxAge: 7000*60*60, httpOnly: true })
+         res.redirect('/');
+       }else{
+         userobj.pass = '';
+         userobj.error ='user id or password is incorrect!!';
+         res.render('login',userobj);
+       }
+     });
+    }else{
+      userobj.pass = '';
+      userobj.error ='user id or password is incorrect!!';
+      res.render('login',userobj);
+    }
+  });
+});
+
 module.exports = router;

@@ -8,7 +8,8 @@ var db = require("./db");
 
 var index = require('./routes/index');
 var users = require('./routes/users');
-
+var auth  = require('./routes/auth');
+var jwt = require('jsonwebtoken');
 var app = express();
 
 // view engine setup
@@ -24,6 +25,17 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/bower_components',  express.static(__dirname + '/bower_components'));
 
+function isLogin(req,res,next){
+  var cookie = req.cookies;
+  if(cookie && cookie.token){
+    jwt.verify(cookie.token, 'someReallySecret', function(err, decoded) {
+        if(err){next()}
+        res.redirect('/');
+    });
+  }
+  next();
+}
+app.use('/auth',isLogin,auth)
 app.use('/', index);
 app.use('/users', users);
 
