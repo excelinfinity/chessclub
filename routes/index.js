@@ -1,15 +1,44 @@
 var mongoose = require('mongoose'),
   express = require('express')
   User = mongoose.model('User'),
-  History = mongoose.model('History')
+  History = mongoose.model('History'),
+  Tournament = mongoose.model('Tournament'),
+  Matches = mongoose.model('Matches'),
   router = express.Router();
 var async = require('async');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  var user = req.locals;
-  console.log(user);
-  res.render('index',user);
+  async.parallel([
+    function(callback){
+      Tournament.count({},function(err,doc){
+        callback(err,doc);
+      })
+    },
+    function(callback){
+      Matches.count({},function(err,doc){
+        callback(err,doc);
+      })
+    },function(callback){
+      User.count({},function(err,doc){
+        callback(err,doc);
+      })
+    },function(callback){
+      User.find({}).sort('currentRating').exec(function(err,value){
+          callback(err,value);
+      })
+    }
+  ],
+  function(err,results){
+    var data = {
+      'totalTour' : results[0],
+      'totalMatch' : results[1],
+      'totalUser' : results[2],
+      'userlist' : results[3],
+      'user' : req.locals
+    }
+    res.render('index',data);
+  });
 })
 
 router.get('/tournament', function(req, res, next) {
@@ -42,17 +71,6 @@ router.get('/userprofile',function(req,res,next){
       };
       res.render('userprofile',data);
   });
-  // User.find({email:req.locals.email},function(err,docs){
-  //   if(err){
-  //     console.log("error getting user detail");
-  //     next();
-  //   }
-  //   if(docs){
-  //     console.log(docs[0]);
-  //     var user = docs[0];
-  //     res.render('userprofile',user);
-  //   }
-  // });
 })
 
 router.get('/matches',function(req,res,next){

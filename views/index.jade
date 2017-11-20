@@ -59,13 +59,13 @@ html
               li.dropdown.user.user-menu
                 a.dropdown-toggle(href='#', data-toggle='dropdown', aria-expanded='false')
                   img.user-image(src='img/avatar.png', alt='User Image')
-                  span.hidden-xs #{name}
+                  span.hidden-xs #{user.name}
                 ul.dropdown-menu
                   // User image
                   li.user-header
                     img.img-circle(src='img/avatar.png', alt='User Image')
                     p
-                      | #{email}
+                      | #{user.email}
                   // Menu Body
                   li.user-body
                     // /.row
@@ -75,31 +75,6 @@ html
                       a.btn.btn-default.btn-flat(href='userprofile') Profile
                     .pull-right
                       a.btn.btn-default.btn-flat(href='logout') Sign out
-
-        //- nav.navbar.navbar-static-top
-        //-   // Sidebar toggle button
-        //-   a.sidebar-toggle(href='#', data-toggle='push-menu', role='button')
-        //-     span.sr-only Toggle navigation
-        //-   //here goes dirty code
-        //-   .navbar-custom-menu
-        //-     ul.nav.navbar-nav
-        //-       // Messages: style can be found in dropdown.less
-        //-       li.dropdown.user.user-menu.open
-        //-         a.dropdown-toggle(href='#', data-toggle='dropdown', aria-expanded='true')
-        //-           img.user-image(src='img/avatar.png', alt='User Image')
-        //-           span.hidden-xs #{name}
-        //-         ul.dropdown-menu
-        //-           // User image
-        //-           li.user-header
-        //-             img.img-circle(src='img/avatar.png', alt='User Image')
-        //-             p
-        //-               | #{email}
-        //-           li.user-footer
-        //-             .pull-left
-        //-               a.btn.btn-default.btn-flat(href='/profile') Profile
-        //-             .pull-right
-        //-               a.btn.btn-default.btn-flat(href='/logout') Sign out
-
 
       // Left side column. contains the logo and sidebar
       aside.main-sidebar
@@ -143,7 +118,7 @@ html
               // small box
               .small-box.bg-aqua
                 .inner
-                  h3 1
+                  h3 #{totalTour}
                   p Total Tournaments
                 .icon
                   i.ion.ion-ios-game-controller-b
@@ -156,7 +131,7 @@ html
               .small-box.bg-green
                 .inner
                   h3
-                    | 5
+                    | #{totalMatch}
                   p Total Matches
                 .icon
                   i.ion.ion-trophy
@@ -168,7 +143,7 @@ html
               // small box
               .small-box.bg-yellow
                 .inner
-                  h3 11
+                  h3 #{totalUser}
                   p Total Players
                 .icon
                   i.ion.ion-person-add
@@ -196,79 +171,18 @@ html
                         th Match Won
                         th ELO Rating
                     tbody
-                      tr
-                        td 1
-                          img.img-circle(src="img/user1-128x128.jpg" height="32px" width="32px")
-                        td
-                          | abcd
-                          | abcd
-                        td 6
-                        td 4
-                        td 1250
-                      tr
-                        td 1
-                          img.img-circle(src="img/user1-128x128.jpg" height="32px" width="32px")
-                        td
-                          | abcd
-                          | abcd
-                        td 6
-                        td 4
-                        td 1250
-                      tr
-                        td 1
-                          img.img-circle(src="img/user1-128x128.jpg" height="32px" width="32px")
-                        td
-                          | abcd
-                          | abcd
-                        td 6
-                        td 4
-                        td 1250
-                      tr
-                        td 1
-                          img.img-circle(src="img/user1-128x128.jpg" height="32px" width="32px")
-                        td
-                          | abcd
-                          | abcd
-                        td 6
-                        td 4
-                        td 1250
-                      tr
-                        td 1
-                          img.img-circle(src="img/user1-128x128.jpg" height="32px" width="32px")
-                        td
-                          | abcd
-                          | abcd
-                        td 6
-                        td 4
-                        td 1250
-                      tr
-                        td 1
-                          img.img-circle(src="img/user1-128x128.jpg" height="32px" width="32px")
-                        td
-                          | abcd
-                          | abcd
-                        td 6
-                        td 4
-                        td 1250
-                      tr
-                        td 1
-                          img.img-circle(src="img/user1-128x128.jpg" height="32px" width="32px")
-                        td
-                          | abcd
-                          | abcd
-                        td 6
-                        td 4
-                        td 1250
-                      tr
-                        td 1
-                          img.img-circle(src="img/user1-128x128.jpg" height="32px" width="32px")
-                        td
-                          | abcd
-                          | abcd
-                        td 6
-                        td 4
-                        td 1250
-
+                      each row,i in userlist
+                        tr
+                          td #{i+1}
+                            img.img-circle(src="img/avatar.png" height="32px" width="32px")
+                          td
+                            | #{row.name}
+                          td
+                            | #{row.totalMatch}
+                          td
+                            | #{row.win}
+                          td 
+                            | #{row.currentRating}
 
             section.col-lg-4.connectedSortable
               //- // Calendar
@@ -293,38 +207,10 @@ html
                         img(src='img/default-50x50.gif', alt='Product Image')
                       .product-info
                         a.product-title(href='javascript:void(0)')
-                          | Oct_Blitz_1
+                          | NO UPCOMING NOW
                           span.label.label-warning.pull-right 16-oct-2017
                         span.product-description
-                          | Blitz tournament at 7 pm alska
-                    li.item
-                      .product-img
-                        img(src='img/default-50x50.gif', alt='Product Image')
-                      .product-info
-                        a.product-title(href='javascript:void(0)')
-                          | Oct_Blitz_1
-                          span.label.label-warning.pull-right 16-oct-2017
-                        span.product-description
-                          | Blitz tournament at 7 pm alska
-                    li.item
-                      .product-img
-                        img(src='img/default-50x50.gif', alt='Product Image')
-                      .product-info
-                        a.product-title(href='javascript:void(0)')
-                          | Oct_Blitz_1
-                          span.label.label-warning.pull-right 16-oct-2017
-                        span.product-description
-                          | Blitz tournament at 7 pm alska
-                    li.item
-                      .product-img
-                        img(src='img/default-50x50.gif', alt='Product Image')
-                      .product-info
-                        a.product-title(href='javascript:void(0)')
-                          | Oct_Blitz_1
-                          span.label.label-warning.pull-right 16-oct-2017
-                        span.product-description
-                          | Blitz tournament at 7 pm alska
-
+                          | IMPLEMENTED SOON!
 
 
     // ./wrapper
