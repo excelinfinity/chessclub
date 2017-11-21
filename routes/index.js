@@ -41,14 +41,14 @@ router.get('/', function(req, res, next) {
   });
 })
 
-router.get('/tournament', function(req, res, next) {
+/*router.get('/tournament', function(req, res, next) {
   res.render('tournament');
 })
 
 router.get('/user', function(req, res, next) {
   res.render('user');
 })
-
+*/
 router.get('/userprofile',function(req,res,next){
   async.parallel([
     function(callback){
@@ -62,7 +62,6 @@ router.get('/userprofile',function(req,res,next){
       });
     }
   ],function(err,results){
-      console.log(results);
       var user = results[0];
       var history = results[1];
       var data = {
@@ -73,10 +72,10 @@ router.get('/userprofile',function(req,res,next){
   });
 })
 
-router.get('/matches',function(req,res,next){
+/*router.get('/matches',function(req,res,next){
   res.render('matches')
 })
-
+*/
 router.get('/play',function(req,res,next){
   res.render('play')
 })

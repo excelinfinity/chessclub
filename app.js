@@ -24,6 +24,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/bower_components',  express.static(__dirname + '/bower_components'));
 app.use(logger('dev'));
+
 function checkLogin(req,res,next){
   var cookie = req.cookies;
   if(cookie && cookie.token){
@@ -33,6 +34,7 @@ function checkLogin(req,res,next){
     });
   }
   next();
+
 }
 
 function isLogin(req,res,next){
