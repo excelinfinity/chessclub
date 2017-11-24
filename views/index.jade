@@ -95,12 +95,7 @@ html
               a(href='/user')
                 i.fa.fa-th
                 span Members
-            li
-              a(href='/play')
-                i.fa.fa-th
-                span play
-                span.pull-right-container
-                  small.label.pull-right.bg-green upcoming
+
 
         // /.sidebar
       // Content Wrapper. Contains page content
@@ -147,7 +142,7 @@ html
                   p Total Players
                 .icon
                   i.ion.ion-person-add
-                a.small-box-footer(href='/users')
+                a.small-box-footer(href='/user')
                   | More info
                   i.fa.fa-arrow-circle-right
             // ./col
@@ -181,7 +176,7 @@ html
                             | #{row.totalMatch}
                           td
                             | #{row.win}
-                          td 
+                          td
                             | #{row.currentRating}
 
             section.col-lg-4.connectedSortable

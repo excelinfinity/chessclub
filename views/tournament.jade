@@ -3,7 +3,7 @@ html
   head
     meta(charset='utf-8')
     meta(http-equiv='X-UA-Compatible', content='IE=edge')
-    title  ChessClub Worksap 
+    title  ChessClub Worksap
     // Tell the browser to be responsive to screen width
     meta(content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no', name='viewport')
     // Bootstrap 3.3.7
@@ -20,7 +20,7 @@ html
       AdminLTE Skins. Choose a skin from the css/skins
       folder instead of downloading all of them to reduce the load.
     link(rel='stylesheet', href='css/skins/_all-skins.min.css')
-    
+
     //if lt IE 9
       script(src='https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js')
       script(src='https://oss.maxcdn.com/respond/1.4.2/respond.min.js')
@@ -44,8 +44,8 @@ html
           // Sidebar toggle button
           a.sidebar-toggle(href='#', data-toggle='push-menu', role='button')
             span.sr-only Toggle navigation
-                
-            
+
+
       // Left side column. contains the logo and sidebar
       aside.main-sidebar
         // sidebar: style can be found in sidebar.less
@@ -65,12 +65,6 @@ html
               a(href='/user')
                 i.fa.fa-th
                 span Members
-            li
-              a(href='/play')
-                i.fa.fa-th
-                span play
-                span.pull-right-container
-                  small.label.pull-right.bg-green upcoming
 
         // /.sidebar
       // Content Wrapper. Contains page content
@@ -101,30 +95,12 @@ html
                         th Tournament Status
                     tbody
                       tr
-                        td 17-OCT-2017
-                        td OCT Blitz   
+                        td 23-NOV-2017
+                        td Nov Blitz
                         td Blitz
                         td 8
-                        td Complete
-                      tr
-                        td 17-OCT-2017
-                        td OCT Blitz   
-                        td Blitz
-                        td --
-                        td upcoming
-                      tr
-                        td 17-OCT-2017
-                        td OCT Blitz   
-                        td Blitz
-                        td 8
-                        td Complete
-                      tr
-                        td 17-OCT-2017
-                        td OCT Blitz   
-                        td Blitz
-                        td --
-                        td upcoming    
-        
+                        td Open
+
     // ./wrapper
     // jQuery 3
     script(src='bower_components/jquery/dist/jquery.min.js')
@@ -150,7 +126,7 @@ html
     script(src='js/pages/dashboard.js')
     // AdminLTE for demo purposes
     script(src='js/demo.js')
-    
+
     script.
       $(function () {
       $('#example2').DataTable({

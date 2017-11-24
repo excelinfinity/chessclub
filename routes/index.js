@@ -41,14 +41,20 @@ router.get('/', function(req, res, next) {
   });
 })
 
-/*router.get('/tournament', function(req, res, next) {
+router.get('/tournament', function(req, res, next) {
   res.render('tournament');
 })
 
 router.get('/user', function(req, res, next) {
-  res.render('user');
+  User.find({}, function(err,value){
+      if(err)next();
+
+      res.render('user',{"userdata" : value});
+  })
+
+
 })
-*/
+
 router.get('/userprofile',function(req,res,next){
   async.parallel([
     function(callback){
@@ -74,8 +80,8 @@ router.get('/userprofile',function(req,res,next){
 
 /*router.get('/matches',function(req,res,next){
   res.render('matches')
-})
-*/
+})*/
+
 router.get('/play',function(req,res,next){
   res.render('play')
 })
