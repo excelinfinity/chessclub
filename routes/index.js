@@ -42,19 +42,61 @@ router.get('/', function(req, res, next) {
 })
 
 router.get('/tournament', function(req, res, next) {
-  res.render('tournament');
+  Tournament.find({},function(err,docs){
+    if(err)next();
+    res.render('tournament',{"TournamentData":docs, "user": req.locals});
+  })
+})
+
+router.post('/addUserTournament', function(req, res, next) {
+    var tid = req.body.id;
+    console.log(tid);
+    Tournament.findById(tid,function(err,doc){
+      if(err){
+        console.log(err);
+        next();
+      }
+      var players = doc.players;
+      if(doc.status =="schedule"){
+        var bool = false;
+        for(var i=0;i<players.length;i++){
+          if(players[i].email==req.locals.email){
+              players.splice(i,1);
+              console.log(players);
+              doc.players = players;
+              doc.save();
+              bool = true;
+              res.json("remove");
+              break;
+          }
+        }
+        if(!bool){
+          players.push({"email":req.locals.email})
+          doc.players = players;
+          doc.save();
+          res.json("added")
+        }
+      }else{
+        res.json("invalid operation")
+      }
+    })
 })
 
 router.get('/user', function(req, res, next) {
   User.find({}, function(err,value){
       if(err)next();
-
       res.render('user',{"userdata" : value});
   })
-
-
 })
-
+// router.get("/addtournament",function(req,res,next){
+//   var tournament = new Tournament();
+//   tournament.id = 1;
+//   tournament.name = "NovLast";
+//   tournament.date = "28'Nov,2017";
+//   tournament.gameType = "Blitz(10min)";
+//   tournament.save();
+//   res.json({"done":"done"});
+// })
 router.get('/userprofile',function(req,res,next){
   async.parallel([
     function(callback){

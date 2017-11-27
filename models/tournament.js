@@ -4,8 +4,14 @@ var mongoose = require('mongoose'),
 var Tournament = new Schema({
   id : Number,
   name : String,
-  date : Date,
-  gameType : {type:String,default:"blitz"}
+  date : String,
+  gameType : {type:String,default:"blitz"},
+	status : {type:String,default:"schedule"},
+	location : {type:String,default:"laska meeting room"},
+	time : {type:String,default:"laska meeting room"},
+	players : [{
+		email : {type:String,required:true}
+	}]
 });
 
 module.exports = mongoose.model('Tournament',Tournament);
