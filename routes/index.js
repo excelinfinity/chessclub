@@ -28,7 +28,7 @@ router.get('/', function(req, res, next) {
           callback(err,value);
       })
     },function(callback){
-      Tournament.find({"status":"scheduled"},function(err,value){
+      Tournament.find({ $or: [ {"status":"scheduled"}, {"status":"Going On"}] },function(err,value){
         callback(err,value);
       })
     }
