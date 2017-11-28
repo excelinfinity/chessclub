@@ -55,7 +55,6 @@ router.get('/tournament', function(req, res, next) {
 
 router.post('/addUserTournament', function(req, res, next) {
     var tid = req.body.id;
-    console.log(tid);
     Tournament.findById(tid,function(err,doc){
       if(err){
         console.log(err);
@@ -67,7 +66,6 @@ router.post('/addUserTournament', function(req, res, next) {
         for(var i=0;i<players.length;i++){
           if(players[i].email==req.locals.email){
               players.splice(i,1);
-              console.log(players);
               doc.players = players;
               doc.save();
               bool = true;
