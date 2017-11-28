@@ -27,6 +27,10 @@ router.get('/', function(req, res, next) {
       User.find({}).sort('currentRating').exec(function(err,value){
           callback(err,value);
       })
+    },function(callback){
+      Tournament.find({"status":"schedule"},function(err,value){
+        callback(err,value);
+      })
     }
   ],
   function(err,results){
@@ -35,6 +39,7 @@ router.get('/', function(req, res, next) {
       'totalMatch' : results[1],
       'totalUser' : results[2],
       'userlist' : results[3],
+      'tour' : results[4],
       'user' : req.locals
     }
     res.render('index',data);
@@ -91,9 +96,12 @@ router.get('/user', function(req, res, next) {
 // router.get("/addtournament",function(req,res,next){
 //   var tournament = new Tournament();
 //   tournament.id = 1;
-//   tournament.name = "NovLast";
+//   tournament.name = "Nov Blitz";
 //   tournament.date = "28'Nov,2017";
 //   tournament.gameType = "Blitz(10min)";
+//   tournament.status = "schedule";
+//   tournament.location ="laska meeting room";
+//   tournament.time = "19.00 PM to 21.00PM";
 //   tournament.save();
 //   res.json({"done":"done"});
 // })

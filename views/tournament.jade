@@ -27,18 +27,18 @@ html
     // Google Font
     script.
       var changeStatus = function(id){
-      var URL = "http://localhost:3000";
+      var URL = "http://172.26.158.63:3000";
       $.ajax({
         url: URL+"/addUserTournament",
         data: "id="+id,
         type: 'POST',
         success: function (resp) {
             console.log(resp)
-            window.location = "http://localhost:3000/tournament"
+            window.location = "http://172.26.158.63:3000/tournament"
         },
         error: function(e) {
             console.log('Error: '+e);
-        }  
+        }
       });
       }
     link(rel='stylesheet', href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic')
@@ -113,7 +113,7 @@ html
                         th Time
                         th Tournament Status
                         th ##
-                        
+
                     tbody
                       each row,i in TournamentData
                         tr
@@ -125,7 +125,7 @@ html
                           td #{row.location}
                           td #{row.time}
                           td #{row.status}
-                          td 
+                          td
                             - var a = false;
                             each rows in row.players
                               if(rows.email == user.email)
@@ -135,9 +135,9 @@ html
                               button.btn.btn-primary(type='button', onclick='changeStatus("'+row._id+'")') participate
                             else if (row.status =="schedule" && a)
                               button.btn.btn-warning(type='button', onclick='changeStatus("'+row._id+'")') withdraw
-                            else 
+                            else
                               button.btn.btn-primary(type='button') details
-                            
+
     // ./wrapper
     // jQuery 3
     script(src='bower_components/jquery/dist/jquery.min.js')
@@ -175,5 +175,3 @@ html
         'autoWidth'   : true
         })
       })
-      
-      

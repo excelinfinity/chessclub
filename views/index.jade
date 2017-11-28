@@ -197,15 +197,16 @@ html
                 // /.box-header
                 .box-body
                   ul.products-list.product-list-in-box
-                    li.item
-                      .product-img
-                        img(src='img/default-50x50.gif', alt='Product Image')
-                      .product-info
-                        a.product-title(href='javascript:void(0)')
-                          | NO UPCOMING NOW
-                          span.label.label-warning.pull-right 16-oct-2017
-                        span.product-description
-                          | IMPLEMENTED SOON!
+                    each row in tour,i
+                      li.item
+                        .product-img
+                          img(src='img/default-50x50.gif', alt='Tournament Image')
+                        .product-info
+                          a.product-title(href='/tournament')
+                            | #{row.name}
+                            span.label.label-warning.pull-right #{row.date}
+                          span.product-description
+                            | #{row.location} &nbsp;&nbsp;#{row.time}
 
 
     // ./wrapper
