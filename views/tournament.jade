@@ -27,26 +27,27 @@ html
     // Google Font
     script.
       var changeStatus = function(id){
-      var URL = "http://172.26.158.63:3000";
-      $.ajax({
-        url: URL+"/addUserTournament",
-        data: "id="+id,
-        type: 'POST',
-        success: function (resp) {
-            console.log(resp)
-            window.location = "http://172.26.158.63:3000/tournament"
-        },
-        error: function(e) {
-            console.log('Error: '+e);
-        }
-      });
+        var URL = "http://172.26.158.63:3000";
+        $.ajax({
+          url: URL+"/addUserTournament",
+          data: "id="+id,
+          type: 'POST',
+          success: function (resp) {
+              console.log(resp)
+              window.location = "http://172.26.158.63:3000/tournament"
+          },
+          error: function(e) {
+              console.log('Error: '+e);
+          }
+        });
       }
+
     link(rel='stylesheet', href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic')
   body.hold-transition.skin-blue.sidebar-mini
     .wrapper
       header.main-header
         // Logo
-        a.logo(href='index2.html')
+        a.logo(href='/')
           // mini logo for sidebar mini 50x50 pixels
           span.logo-mini
             b W
@@ -60,7 +61,28 @@ html
           // Sidebar toggle button
           a.sidebar-toggle(href='#', data-toggle='push-menu', role='button')
             span.sr-only Toggle navigation
-
+          .navbar-custom-menu
+            ul.nav.navbar-nav
+              // User Account: style can be found in dropdown.less
+              li.dropdown.user.user-menu
+                a.dropdown-toggle(href='#', data-toggle='dropdown', aria-expanded='false')
+                  img.user-image(src='img/avatar.png', alt='User Image')
+                  span.hidden-xs #{user.name}
+                ul.dropdown-menu
+                  // User image
+                  li.user-header
+                    img.img-circle(src='img/avatar.png', alt='User Image')
+                    p
+                      | #{user.email}
+                  // Menu Body
+                  li.user-body
+                    // /.row
+                  // Menu Footer
+                  li.user-footer
+                    .pull-left
+                      a.btn.btn-default.btn-flat(href='userprofile') Profile
+                    .pull-right
+                      a.btn.btn-default.btn-flat(href='logout') Sign out
 
       // Left side column. contains the logo and sidebar
       aside.main-sidebar
@@ -117,26 +139,27 @@ html
                     tbody
                       each row,i in TournamentData
                         tr
-                          td #{i+1}
-                          td #{row.date}
-                          td #{row.name}
-                          td #{row.gameType}
-                          td #{row.players.length}
-                          td #{row.location}
-                          td #{row.time}
-                          td #{row.status}
-                          td
-                            - var a = false;
-                            each rows in row.players
-                              if(rows.email == user.email)
-                                - a = true;
-                                - break;
-                            if (row.status=="schedule" && !a)
-                              button.btn.btn-primary(type='button', onclick='changeStatus("'+row._id+'")') participate
-                            else if (row.status =="schedule" && a)
-                              button.btn.btn-warning(type='button', onclick='changeStatus("'+row._id+'")') withdraw
-                            else
-                              button.btn.btn-primary(type='button') details
+                            td.someclass(data-href='http://172.26.158.63:3000/matches?id='+row._id) #{i+1}
+                            td.someclass(data-href='http://172.26.158.63:3000/matches?id='+row._id) #{row.date}
+                            td.someclass(data-href='http://172.26.158.63:3000/matches?id='+row._id) #{row.name}
+                            td.someclass(data-href='http://172.26.158.63:3000/matches?id='+row._id) #{row.gameType}
+                            td.someclass(data-href='http://172.26.158.63:3000/matches?id='+row._id) #{row.players.length}
+                            td.someclass(data-href='http://172.26.158.63:3000/matches?id='+row._id) #{row.location}
+                            td.someclass(data-href='http://172.26.158.63:3000/matches?id='+row._id) #{row.time}
+                            td.someclass(data-href='http://172.26.158.63:3000/matches?id='+row._id) #{row.status}
+
+                            td
+                              - var a = false;
+                              each rows in row.players
+                                if(rows.email == user.email)
+                                  - a = true;
+                                  - break;
+                              if (row.status=="scheduled" && !a)
+                                button.btn.btn-primary(type='button', onclick='changeStatus("'+row._id+'")') participate
+                              else if (row.status =="scheduled" && a)
+                                button.btn.btn-warning(type='button', onclick='changeStatus("'+row._id+'")') withdraw
+                              else
+                                button.btn.btn-primary(type='button') details
 
     // ./wrapper
     // jQuery 3
@@ -175,3 +198,10 @@ html
         'autoWidth'   : true
         })
       })
+
+
+      $(".someclass").click(function(event) {
+
+        console.log("hijlhcds");
+        window.location = $(this).data("href");
+      });

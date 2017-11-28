@@ -28,7 +28,7 @@ router.get('/', function(req, res, next) {
           callback(err,value);
       })
     },function(callback){
-      Tournament.find({"status":"schedule"},function(err,value){
+      Tournament.find({"status":"scheduled"},function(err,value){
         callback(err,value);
       })
     }
@@ -62,7 +62,7 @@ router.post('/addUserTournament', function(req, res, next) {
         next();
       }
       var players = doc.players;
-      if(doc.status =="schedule"){
+      if(doc.status =="scheduled"){
         var bool = false;
         for(var i=0;i<players.length;i++){
           if(players[i].email==req.locals.email){
@@ -76,7 +76,7 @@ router.post('/addUserTournament', function(req, res, next) {
           }
         }
         if(!bool){
-          players.push({"email":req.locals.email})
+          players.push({"email":req.locals.email, "name":req.locals.name})
           doc.players = players;
           doc.save();
           res.json("added")
@@ -90,7 +90,7 @@ router.post('/addUserTournament', function(req, res, next) {
 router.get('/user', function(req, res, next) {
   User.find({}, function(err,value){
       if(err)next();
-      res.render('user',{"userdata" : value});
+      res.render('user',{"userdata" : value, "user": req.locals});
   })
 })
 // router.get("/addtournament",function(req,res,next){
@@ -128,9 +128,30 @@ router.get('/userprofile',function(req,res,next){
   });
 })
 
-/*router.get('/matches',function(req,res,next){
-  res.render('matches')
-})*/
+router.get('/matches',function(req,res,next){
+  var tourId = req.query.id;
+  async.parallel([
+    function(callback){
+      Tournament.findById(tourId,function(err,doc){
+        callback(err,doc);
+      })
+    },
+    function(callback){
+      History.find({"tourId":tourId},function(err,docs){
+        callback(err,docs);
+      });
+    }
+  ],function(err,results){
+      var tournament = results[0];
+      var history = results[1];
+      var data = {
+        'tournament' : tournament,
+        'history' : history,
+        'user': req.locals
+      };
+      res.render('matches',data);
+  });
+})
 
 router.get('/play',function(req,res,next){
   res.render('play')

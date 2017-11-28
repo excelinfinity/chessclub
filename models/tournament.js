@@ -10,7 +10,8 @@ var Tournament = new Schema({
 	location : {type:String,default:"laska meeting room"},
 	time : {type:String,default:"laska meeting room"},
 	players : [{
-		email : {type:String,required:true}
+		email : {type:String,required:true},
+		name : {type :String, required :true}
 	}]
 });
 
